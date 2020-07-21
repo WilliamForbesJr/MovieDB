@@ -1,6 +1,6 @@
 import  React, { Component } from 'react';
-import Movie from './movie';
 
+import Movie from './movie';
 import './App.css';
 
 class MoviesList extends Component {
@@ -29,4 +29,4 @@ class MoviesList extends Component {
 	}
 }
 
-export default MoviesList; 
+export default MoviesList;
