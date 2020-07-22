@@ -1,11 +1,12 @@
-import  React, { Component } from 'react';
+import  React, { PureComponent } from 'react';
 import styled from 'styled-components';
+import Overdrive from 'react-overdrive';
 
 import './App.css';
 
 import { Poster } from './movie';
 
-class MovieDetail extends Component {
+class MovieDetail extends PureComponent {
 
 	state = {
 		movie: {},
@@ -23,15 +24,17 @@ class MovieDetail extends Component {
 		}
 	}
 	render() {
-		const { backdrop_path, poster_path, title, release_date, overview } = this.state.movie
+		const { backdrop_path, poster_path, title, release_date, overview, id } = this.state.movie
 
 		const backdrop = `http://image.tmdb.org/t/p/w1280${backdrop_path}`;
 		const poster = `http://image.tmdb.org/t/p/w154${poster_path}`;
-
+		
 		return (
       <MovieWrapper backdrop={backdrop}>
 				<MovieInfo>
-					<Poster src={poster} alt={title}/>
+					<Overdrive id={`${id}`}>
+						<Poster src={poster} alt={title}/>
+					</Overdrive>
 					<div>
 						<h1>{title}</h1>
 						<h3>{release_date}</h3>
@@ -47,7 +50,7 @@ export default MovieDetail;
 
 const MovieWrapper = styled.div`
 	position: relative;
-	padding-top: 50vh;
+	padding-top: 65vh;
 	background: url(${props => props.backdrop}) no-repeat;
 	background-size: cover;
 `;
@@ -57,6 +60,7 @@ const MovieInfo = styled.div`
 	text-align: left;
 	padding: 2rem 10%;
 	display: flex;
+	max-height: 25vh;
 	> div {
 		margin-left: 20px;
 	}

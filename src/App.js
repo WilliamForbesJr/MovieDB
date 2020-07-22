@@ -22,7 +22,7 @@ const App = () => (
 			</header>
 			<Switch>
 				<Route exact path="/" component={MoviesList} />			
-				<Route path="/:id" component={MovieDetail} />				
+				<Route path="/:id" component={MovieDetail} />
 			</Switch>
 		</div>
 	</Router>
