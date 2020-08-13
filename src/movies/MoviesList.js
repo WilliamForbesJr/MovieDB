@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Movie from './movie';
 
-import './App.css';
+import '../App.css';
 
 class MoviesList extends PureComponent {
 
@@ -15,17 +15,28 @@ class MoviesList extends PureComponent {
 		try {
 			const result = await fetch('https://api.themoviedb.org/3/discover/movie?api_key=6d1b8f3df76149d16cf874de028f1419&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1');
 			const movies = await result.json();
-			this.setState({
-				movies: movies.results,
-			});
+			if (movies.results) {
+				this.setState({
+					movies: movies.results,
+				});
+			}
 		} catch(e){
 			console.log(e)
 		}
 	}
 	render() {
+		const { movies } = this.state;
+
+		if (this.state.movies < 1) return <h1 data-testid="loading">Loading</h1>;
+
 		return (
       <MovieGrid>
-        {this.state.movies.map(movie => <Movie key={movie.id} movie={movie} />)}
+				{movies.map(movie => 
+					<Movie 
+						key={movie.id.toString()} 
+						movie={movie} 
+					/>
+				)}
       </MovieGrid>
 		);
 	}
