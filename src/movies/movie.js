@@ -6,7 +6,7 @@ import Overdrive from 'react-overdrive';
 
 export const POSTER_PATH = 'http://image.tmdb.org/t/p/w154';
 
-const Movie = ({movie}) => {
+const Movie = ({ movie }) => {
 	if (!movie) return null;
 
 	const id = movie.id.toString();
@@ -28,7 +28,7 @@ Movie.propTypes = {
 	movie: PropTypes.shape({
 		title: PropTypes.string.isRequired,
 		poster_path: PropTypes.string.isRequired,
-		id: PropTypes.string.isRequired,
+		id: PropTypes.number.isRequired,
 	}).isRequired,
 };
 

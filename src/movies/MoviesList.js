@@ -33,7 +33,7 @@ class MoviesList extends PureComponent {
       <MovieGrid>
 				{movies.map(movie => 
 					<Movie 
-						key={movie.id.toString()} 
+						key={movie.id} 
 						movie={movie} 
 					/>
 				)}
