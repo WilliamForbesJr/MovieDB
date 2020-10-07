@@ -7,8 +7,9 @@ import {
 } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
-import { createStore } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 
 import logo from './logo.svg';
 import './App.css';
@@ -17,11 +18,14 @@ import rootReducer from './rootReducer';
 
 import MoviesList from './movies/MoviesList';
 import MovieDetail from './movies/MovieDetail';
+import Toggle from './toggle/toggle';
+
+const middleware = [thunk];
 
 const store = createStore(
 	rootReducer,
 	{},
-	composeWithDevTools(),
+	composeWithDevTools(applyMiddleware(...middleware)),
 );
 
 const App = () => (
@@ -32,6 +36,7 @@ const App = () => (
 					<Link to="/">
 						<img src={logo} className="App-logo" alt="logo" />
 					</Link>
+					<Toggle/>
 				</header>
 				<Switch>
 					<Route exact path="/" component={MoviesList} />			
